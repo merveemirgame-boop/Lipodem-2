@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lipödem Rehberi</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#7C3AED;--primary-light:#A78BFA;--primary-dark:#5B21B6;
+  --primary-bg:#F5F3FF;--primary-border:#DDD6FE;
+  --green:#059669;--green-bg:#ECFDF5;--green-border:#A7F3D0;
+  --blue:#2563EB;--blue-bg:#EFF6FF;--blue-border:#BFDBFE;
+  --pink:#EC4899;--pink-bg:#FDF2F8;--pink-border:#FBCFE8;
+  --orange:#D97706;--orange-bg:#FFFBEB;--orange-border:#FDE68A;
+  --red:#DC2626;--red-bg:#FEF2F2;--red-border:#FECACA;
+  --text:#111827;--text2:#374151;--text3:#6B7280;--text4:#9CA3AF;
+  --bg:#F9FAFB;--surface:#FFFFFF;--border:#E5E7EB;--border2:#F3F4F6;
+  --shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg:0 10px 15px rgba(0,0,0,.1),0 4px 6px rgba(0,0,0,.05);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text)}
+
+/* ── LAYOUT ── */
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sidebar{
+  width:260px;flex-shrink:0;background:var(--surface);
+  border-right:1px solid var(--border);display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+.sidebar::-webkit-scrollbar{width:4px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.logo{padding:24px 20px 16px;border-bottom:1px solid var(--border2)}
+.logo-icon{font-size:28px;margin-bottom:6px}
+.logo-title{font-size:18px;font-weight:800;color:var(--primary)}
+.logo-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.nav{padding:12px 10px;flex:1}
+.nav-group-label{font-size:10px;font-weight:700;color:var(--text4);text-transform:uppercase;letter-spacing:.08em;padding:8px 10px 4px}
+.nav-item{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:var(--radius-sm);cursor:pointer;margin-bottom:2px;
+  font-size:14px;font-weight:500;color:var(--text2);
+  transition:all .15s;user-select:none;
+}
+.nav-item:hover{background:var(--bg);color:var(--text)}
+.nav-item.active{background:var(--primary-bg);color:var(--primary);font-weight:600}
+.nav-item-icon{font-size:18px;width:22px;text-align:center;flex-shrink:0}
+.nav-badge{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
+
+.sidebar-footer{padding:16px 20px;border-top:1px solid var(--border2)}
+.sidebar-footer-text{font-size:11px;color:var(--text4);line-height:1.7}
+
+/* MAIN */
+.main{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.topbar{
+  height:56px;border-bottom:1px solid var(--border);background:var(--surface);
+  display:flex;align-items:center;padding:0 28px;gap:16px;flex-shrink:0;
+}
+.topbar-title{font-size:20px;font-weight:700;color:var(--text)}
+.topbar-sub{font-size:13px;color:var(--text3);margin-left:4px}
+.topbar-right{margin-left:auto;display:flex;gap:10px;align-items:center}
+.date-chip{font-size:12px;color:var(--text3);background:var(--border2);padding:4px 12px;border-radius:20px}
+
+.content{flex:1;overflow-y:auto;padding:28px;display:none}
+.content::-webkit-scrollbar{width:6px}
+.content::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.content.active{display:block}
+
+/* COMPONENTS */
+.page-header{margin-bottom:24px}
+.page-title{font-size:26px;font-weight:800;color:var(--text);margin-bottom:6px}
+.page-desc{font-size:14px;color:var(--text3);max-width:640px;line-height:1.6}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:1100px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
+
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:20px;box-shadow:var(--shadow)}
+.card-sm{padding:14px 16px}
+.card-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:12px}
+.card-sub{font-size:12px;color:var(--text3);margin-top:2px;font-weight:400}
+
+/* Stat cards */
+.stat-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:20px;display:flex;align-items:flex-start;gap:14px;box-shadow:var(--shadow)}
+.stat-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.stat-value{font-size:28px;font-weight:800;color:var(--text);line-height:1}
+.stat-label{font-size:13px;color:var(--text3);margin-top:4px}
+.stat-sub{font-size:11px;color:var(--text4);margin-top:3px}
+
+/* Progress bar */
+.progress-bar-wrap{background:var(--border2);border-radius:4px;height:8px;overflow:hidden;margin-top:8px}
+.progress-bar-fill{height:8px;border-radius:4px;transition:width .4s ease}
+
+/* Checklist */
+.check-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border2);cursor:pointer;transition:opacity .15s}
+.check-item:last-child{border-bottom:none}
+.check-item:hover{opacity:.8}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.check-box.done{background:var(--primary);border-color:var(--primary)}
+.check-box.done::after{content:'✓';color:white;font-size:12px;font-weight:800}
+.check-label{flex:1;font-size:14px;color:var(--text2)}
+.check-label.done{text-decoration:line-through;color:var(--text4)}
+.check-emoji{font-size:18px;width:22px;text-align:center}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-purple{background:var(--primary-bg);color:var(--primary)}
+.badge-green{background:var(--green-bg);color:var(--green)}
+.badge-blue{background:var(--blue-bg);color:var(--blue)}
+.badge-orange{background:var(--orange-bg);color:var(--orange)}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-gray{background:var(--border2);color:var(--text3)}
+
+/* Alert banners */
+.alert{border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.alert-red{background:var(--red-bg);border-left:4px solid var(--red)}
+.alert-green{background:var(--green-bg);border-left:4px solid var(--green)}
+.alert-blue{background:var(--blue-bg);border-left:4px solid var(--blue)}
+.alert-orange{background:var(--orange-bg);border-left:4px solid var(--orange)}
+.alert-purple{background:var(--primary-bg);border-left:4px solid var(--primary)}
+.alert-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.alert-text{font-size:13px;line-height:1.6;color:var(--text2)}
+.alert-title{font-weight:700;margin-bottom:3px;font-size:13px}
+
+/* Food / item lists */
+.food-group{margin-bottom:12px}
+.food-group-header{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--radius-sm);cursor:pointer;transition:background .15s;background:var(--bg)}
+.food-group-header:hover{background:var(--border2)}
+.food-group-title{font-size:14px;font-weight:700;color:var(--text);flex:1}
+.food-group-items{padding:8px 14px 4px 38px;display:none}
+.food-group-items.open{display:block}
+.food-item{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;color:var(--text2)}
+.food-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.food-tip{font-size:11px;color:var(--text4);margin-left:15px;margin-top:1px}
+
+/* Exercise cards */
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,border-color .2s;cursor:pointer;box-shadow:var(--shadow)}
+.ex-card:hover{box-shadow:var(--shadow-lg);border-color:var(--primary-border)}
+.ex-card-header{padding:18px 20px;display:flex;align-items:flex-start;gap:14px}
+.ex-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.ex-title{font-size:16px;font-weight:700;color:var(--text)}
+.ex-rating{color:#F59E0B;font-size:14px;letter-spacing:1px;margin:4px 0}
+.ex-desc{font-size:12px;color:var(--text3);line-height:1.5}
+.ex-detail{padding:0 20px 18px;border-top:1px solid var(--border2);display:none}
+.ex-detail.open{display:block;padding-top:14px}
+.ex-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.ex-meta-item{background:var(--bg);border-radius:8px;padding:10px;text-align:center}
+.ex-meta-label{font-size:10px;color:var(--text3);margin-bottom:3px}
+.ex-meta-value{font-size:12px;font-weight:600;color:var(--text)}
+.tip-item{display:flex;gap:8px;align-items:flex-start;padding:4px 0}
+.tip-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.tip-text{font-size:13px;color:var(--text2);line-height:1.5}
+
+/* Plan table */
+.plan-table{width:100%;border-collapse:collapse;font-size:13px}
+.plan-table th{text-align:left;padding:10px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);border-bottom:2px solid var(--border);background:var(--bg)}
+.plan-table td{padding:10px 14px;border-bottom:1px solid var(--border2);color:var(--text2)}
+.plan-table tr:last-child td{border-bottom:none}
+.plan-table tr:hover td{background:var(--bg)}
+
+/* Supplement cards */
+.supp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.supp-header{padding:18px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:background .15s}
+.supp-header:hover{background:var(--bg)}
+.supp-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.supp-name{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.supp-en{font-size:11px;color:var(--text3);font-style:italic;margin-bottom:6px}
+.supp-body{padding:0 20px 18px;border-top:1px solid var(--border2);display:none}
+.supp-body.open{display:block;padding-top:14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.chip{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;background:var(--primary-bg);color:var(--primary)}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.info-box{background:var(--bg);border-radius:8px;padding:10px}
+.info-label{font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.info-value{font-size:12px;color:var(--text2)}
+.note-block{background:var(--blue-bg);border-radius:8px;padding:10px;margin-bottom:8px}
+.note-title{font-size:11px;font-weight:700;color:var(--blue);margin-bottom:3px}
+.note-text{font-size:12px;color:var(--text2);line-height:1.5}
+.warn-block{background:var(--orange-bg);border-radius:8px;padding:10px}
+.warn-title{font-size:11px;font-weight:700;color:var(--orange);margin-bottom:3px}
+.warn-text{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* Care tabs */
+.tab-row{display:flex;gap:4px;margin-bottom:20px;background:var(--bg);border-radius:var(--radius-sm);padding:4px;border:1px solid var(--border)}
+.tab-btn{flex:1;padding:8px;border-radius:7px;text-align:center;font-size:12px;font-weight:600;color:var(--text3);cursor:pointer;transition:all .15s;white-space:nowrap}
+.tab-btn.active{background:var(--surface);color:var(--primary);box-shadow:var(--shadow)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* Device card */
+.dev-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.dev-header{padding:18px 20px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;transition:background .15s}
+.dev-header:hover{background:var(--bg)}
+.dev-body{padding:0 20px 18px;border-top:1px solid var(--border2);display:none}
+.dev-body.open{display:block;padding-top:14px}
+
+/* Cream card */
+.cream-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border2)}
+.cream-item:last-child{border-bottom:none}
+.cream-icon{font-size:24px;width:32px;text-align:center;flex-shrink:0}
+.cream-name{font-size:14px;font-weight:600;color:var(--text)}
+.cream-benefit{font-size:12px;color:var(--text3);margin-top:2px}
+
+/* Compression card */
+.comp-level{display:flex;align-items:center;gap:8px;padding:6px 0}
+.comp-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.comp-text{font-size:13px;color:var(--text2)}
+
+/* Routine */
+.routine-col{display:flex;flex-direction:column;gap:16px}
+.routine-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.routine-block-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border2)}
+.routine-block-title{font-size:15px;font-weight:700;color:var(--text)}
+.routine-task{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--border2);cursor:pointer;transition:background .15s}
+.routine-task:last-child{border-bottom:none}
+.routine-task:hover{background:var(--bg)}
+.routine-task-label{flex:1;font-size:13px;color:var(--text2)}
+.routine-task-label.done{text-decoration:line-through;color:var(--text4)}
+.cat-pill{font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;flex-shrink:0;text-transform:uppercase;letter-spacing:.05em}
+
+/* Water tracker */
+.water-glasses{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.wglass{width:38px;height:38px;border-radius:10px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .2s}
+.wglass:hover{border-color:var(--blue);background:var(--blue-bg);transform:scale(1.1)}
+.wglass.filled{background:var(--blue-bg);border-color:var(--blue)}
+
+/* Priority list */
+.priority-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border2)}
+.priority-item:last-child{border-bottom:none}
+.rank-circle{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:800;color:white}
+.priority-icon{font-size:20px;width:24px;text-align:center}
+.priority-name{flex:1;font-size:14px;font-weight:500;color:var(--text2)}
+
+/* Section divider */
+.section-divider{font-size:16px;font-weight:700;color:var(--text);margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.section-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* Table */
+.stack-table{width:100%;border-collapse:collapse}
+.stack-table tr{border-bottom:1px solid var(--border2)}
+.stack-table tr:last-child{border-bottom:none}
+.stack-table td{padding:11px 14px;font-size:13px;color:var(--text2)}
+.stack-table td:first-child{font-size:18px;width:32px}
+.stack-table td:nth-child(2){font-weight:600;color:var(--text)}
+
+/* ── SCROLLBAR ── */
+*{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">💜</div>
+      <div class="logo-title">Lipödem Rehberi</div>
+      <div class="logo-sub">Kişisel yönetim uygulaması</div>
+    </div>
+    <nav class="nav">
+      <div class="nav-group-label">Genel</div>
+      <div class="nav-item active" onclick="show('home',this)"><span class="nav-item-icon">🏠</span>Ana Sayfa</div>
+      <div class="nav-item" onclick="show('routine',this)"><span class="nav-item-icon">📋</span>Günlük Rutin<span class="nav-badge badge-purple" id="sideRoutineBadge">0/17</span></div>
+
+      <div class="nav-group-label">Bilgi</div>
+      <div class="nav-item" onclick="show('nutrition',this)"><span class="nav-item-icon">🥗</span>Beslenme</div>
+      <div class="nav-item" onclick="show('exercise',this)"><span class="nav-item-icon">🚴</span>Egzersiz</div>
+      <div class="nav-item" onclick="show('supplements',this)"><span class="nav-item-icon">💊</span>Takviyeler</div>
+      <div class="nav-item" onclick="show('care',this)"><span class="nav-item-icon">💆</span>Bakım &amp; Cihazlar</div>
+
+      <div class="nav-group-label">Diğer</div>
+      <div class="nav-item" onclick="show('priorities',this)"><span class="nav-item-icon">🏆</span>Öncelikler</div>
+      <div class="nav-item" onclick="show('info',this)"><span class="nav-item-icon">ℹ️</span>Hakkında</div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">
+        ⚠️ Bu uygulama tıbbi tavsiye niteliği taşımaz.<br>Doktorunuza danışmayı unutmayın.
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <span class="topbar-title" id="topbarTitle">Ana Sayfa</span>
+        <span class="topbar-sub" id="topbarSub">— Günlük özet</span>
+      </div>
+      <div class="topbar-right">
+        <span class="date-chip" id="topDate"></span>
+      </div>
+    </div>
+
+    <!-- ══ HOME ══ -->
+    <div class="content active" id="page-home">
+      <div class="page-header">
+        <div class="page-title">Merhaba 👋</div>
+        <div class="page-desc">Lipödem yönetimi için günlük takip panonuz. Su için, hareket edin, düzenli uyuyun.</div>
+      </div>
+
+      <!-- Stat row -->
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#EDE9FE">💧</div>
+          <div>
+            <div class="stat-value" id="waterStatVal">0</div>
+            <div class="stat-label">Bardak su</div>
+            <div class="stat-sub">Hedef: 8 bardak</div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="waterStatBar" style="width:0%;background:#2563EB"></div></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#ECFDF5">✅</div>
+          <div>
+            <div class="stat-value" id="checkStatVal">0</div>
+            <div class="stat-label">Tamamlanan görev</div>
+            <div class="stat-sub">Hedef: 6 temel görev</div>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="checkStatBar" style="width:0%;background:#059669"></div></div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#FEF3C7">🚶</div>
+          <div>
+            <div class="stat-value">8–12K</div>
+            <div class="stat-label">Günlük adım hedefi</div>
+            <div class="stat-sub">Lenf pompası için</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#FDF2F8">😴</div>
+          <div>
+            <div class="stat-value">8 sa</div>
+            <div class="stat-label">Uyku hedefi</div>
+            <div class="stat-sub">7.5–9 saat ideal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:20px">
+        <!-- Water -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <div class="card-title" style="margin-bottom:0">💧 Su Takibi</div>
+            <span class="badge badge-blue" id="waterBadge">0 / 8</span>
+          </div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:10px">Tıklayarak bardak ekle/çıkar</div>
+          <div class="water-glasses" id="waterGlasses"></div>
+        </div>
+
+        <!-- Quick Checklist -->
+        <div class="card">
+          <div class="card-title">✅ Bugünkü Temel Görevler</div>
+          <div id="homeChecklist"></div>
+        </div>
+      </div>
+
+      <!-- Tip of day -->
+      <div class="alert alert-purple" style="margin-bottom:20px">
+        <span class="alert-icon">💡</span>
+        <div>
+          <div class="alert-title">Günün Hatırlatması</div>
+          <div class="alert-text" id="tipOfDay"></div>
+        </div>
+      </div>
+
+      <div class="section-divider">📊 Lipödem Yönetiminin Temelleri</div>
+      <div class="grid-3">
+        <div class="card card-sm" style="border-left:4px solid var(--primary)">
+          <div style="font-size:22px;margin-bottom:6px">🥗</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Antiinflamatuar Beslenme</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6">İnsülin dalgalanması ve inflamasyonu düşür. Şeker ve işlenmiş gıdaları bırak.</div>
+        </div>
+        <div class="card card-sm" style="border-left:4px solid var(--blue)">
+          <div style="font-size:22px;margin-bottom:6px">🚴</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Düşük Darbeli Egzersiz</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6">Bisiklet, yüzme, yürüyüş. Lenf pompasını aktive et, ödem azalt.</div>
+        </div>
+        <div class="card card-sm" style="border-left:4px solid var(--green)">
+          <div style="font-size:22px;margin-bottom:6px">🧦</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Kompresyon</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6">Her gün giy. Uçuş, uzun oturma ve sıcak havalarda mutlaka.</div>
+        </div>
+        <div class="card card-sm" style="border-left:4px solid var(--pink)">
+          <div style="font-size:22px;margin-bottom:6px">💆</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Lenf Drenajı</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6">Haftada 1–3 kez MLD. Sertifikalı lenf terapistiyle çalış.</div>
+        </div>
+        <div class="card card-sm" style="border-left:4px solid var(--orange)">
+          <div style="font-size:22px;margin-bottom:6px">😴</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Kaliteli Uyku</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6">7.5–9 saat. İnflamasyon, hormon dengesi ve ödem uykuyla bağlantılı.</div>
+        </div>
+        <div class="card card-sm" style="border-left:4px solid #6B7280">
+          <div style="font-size:22px;margin-bottom:6px">🧘</div>
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px">Stres Azaltma</div>
+          <div style="font-size:12px;color:var(--text3);line-height:1.6">Kronik stres kortizolü artırır — inflamasyon ve ödem kötüleşir.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ NUTRITION ══ -->
+    <div class="content" id="page-nutrition">
+      <div class="page-header">
+        <div class="page-title">🥗 Beslenme Rehberi</div>
+        <div class="page-desc">Lipödemde beslenme en kritik alanlardan biridir. Amaç: insülin dalgalanmasını azaltmak, inflamasyonu düşürmek, ödemi azaltmak.</div>
+      </div>
+
+      <div class="tab-row">
+        <div class="tab-btn active" onclick="setTab('nut','avoid',this)">🚫 Kaçınılacaklar</div>
+        <div class="tab-btn" onclick="setTab('nut','good',this)">✅ Tüketilmeli</div>
+        <div class="tab-btn" onclick="setTab('nut','models',this)">📊 Beslenme Modelleri</div>
+      </div>
+
+      <div class="tab-content active" id="nut-avoid">
+        <div class="alert alert-red"><span class="alert-icon">⚠️</span><div class="alert-text">Bu gıdalar inflamasyonu, ödemi ve lipödem semptomlarını belirgin şekilde artırabilir. Mümkün olduğunca kaçının.</div></div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">🔥 Yüksek İnflamasyon Yapanlar</div>
+            <div id="avoidList1"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">💧 Ödem Artırabilenler</div>
+            <div class="alert alert-orange"><span class="alert-icon">ℹ️</span><div class="alert-text">Bu besinler herkeste sorun yaratmaz. Kendi vücudunuzun tepkisini gözlemleyin.</div></div>
+            <div id="avoidList2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="nut-good">
+        <div class="alert alert-green"><span class="alert-icon">✅</span><div class="alert-text">Bu besinler lipödem semptomlarını hafifletir, bağ dokusunu destekler ve lenf sistemine yardımcı olur.</div></div>
+        <div id="goodFoods"></div>
+      </div>
+
+      <div class="tab-content" id="nut-models">
+        <div class="alert alert-blue"><span class="alert-icon">💡</span><div class="alert-text">En az 4 hafta tutarlı uygulayın. Vücudunuzun tepkisini gözlemleyin. Büyük değişiklikler için doktora danışın.</div></div>
+        <div class="grid-2" id="dietModels"></div>
+      </div>
+    </div>
+
+    <!-- ══ EXERCISE ══ -->
+    <div class="content" id="page-exercise">
+      <div class="page-header">
+        <div class="page-title">🚴 Egzersiz Rehberi</div>
+        <div class="page-desc">Düşük darbeli egzersizler lenf pompasını aktive eder. Tamamen hareketsizlik en kötü seçenektir.</div>
+      </div>
+
+      <div class="alert alert-blue"><span class="alert-icon">📌</span><div><div class="alert-title">Temel Kural</div><div class="alert-text">Yüksek darbeli egzersizler bazı kişilerde ödemi ve ağrıyı artırabilir. Ancak düzenli, orta yoğunlukta hareket kesinlikle gereklidir.</div></div></div>
+
+      <div class="section-divider">✅ Önerilen Egzersizler</div>
+      <div id="exerciseCards" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px"></div>
+
+      <div class="section-divider">⚠️ Dikkatli Olunmalı</div>
+      <div class="card" style="margin-bottom:24px">
+        <div id="avoidExercises" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px"></div>
+      </div>
+
+      <div class="section-divider">📅 Örnek Haftalık Program</div>
+      <div class="card">
+        <table class="plan-table">
+          <thead><tr><th>Gün</th><th>Aktivite</th><th>Süre</th><th>Tip</th></tr></thead>
+          <tbody id="weeklyPlan"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ══ SUPPLEMENTS ══ -->
+    <div class="content" id="page-supplements">
+      <div class="page-header">
+        <div class="page-title">💊 Takviye Rehberi</div>
+        <div class="page-desc">Lipödemde en yaygın kullanılan takviyeler. Kişiye göre değişir — başlamadan önce mutlaka doktorunuza danışın.</div>
+      </div>
+      <div class="alert alert-orange"><span class="alert-icon">⚠️</span><div><div class="alert-title">Önemli Uyarı</div><div class="alert-text">Takviyeler ilaç yerine geçmez ve birbirleriyle ya da ilaçlarla etkileşebilir. Bilgiler genel bilgi amaçlıdır.</div></div></div>
+
+      <div class="grid-2" style="margin-bottom:24px" id="suppCards"></div>
+
+      <div class="section-divider">🌟 Temel Başlangıç Paketi</div>
+      <div class="card">
+        <div style="font-size:13px;color:var(--text3);margin-bottom:14px">Lipödemde en çok önceliklendirilen takviyeler:</div>
+        <table class="stack-table" id="stackTable"></table>
+      </div>
+    </div>
+
+    <!-- ══ CARE ══ -->
+    <div class="content" id="page-care">
+      <div class="page-header">
+        <div class="page-title">💆 Bakım &amp; Cihazlar</div>
+        <div class="page-desc">Lenf drenajı, kompresyon ve destekleyici cihazlar lipödem tedavisinin temel taşlarıdır.</div>
+      </div>
+      <div class="tab-row">
+        <div class="tab-btn active" onclick="setTab('care','devices',this)">⚡ Cihazlar</div>
+        <div class="tab-btn" onclick="setTab('care','massage',this)">🙌 Masaj</div>
+        <div class="tab-btn" onclick="setTab('care','compression',this)">🧦 Kompresyon</div>
+        <div class="tab-btn" onclick="setTab('care','creams',this)">💄 Kremler</div>
+      </div>
+
+      <div class="tab-content active" id="care-devices">
+        <div id="deviceCards" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px"></div>
+      </div>
+      <div class="tab-content" id="care-massage">
+        <div class="grid-2" id="massageCards"></div>
+      </div>
+      <div class="tab-content" id="care-compression">
+        <div class="grid-2" id="compCards"></div>
+      </div>
+      <div class="tab-content" id="care-creams">
+        <div class="grid-2">
+          <div class="card" id="creamList"></div>
+          <div class="card">
+            <div class="card-title">💡 Uygulama İpuçları</div>
+            <div id="creamTips"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ROUTINE ══ -->
+    <div class="content" id="page-routine">
+      <div class="page-header">
+        <div class="page-title">📋 Günlük Rutin Takibi</div>
+        <div class="page-desc">Sabah, öğle ve akşam görevlerinizi takip edin. Tutarlılık en önemli faktördür.</div>
+      </div>
+
+      <div class="grid-4" style="margin-bottom:20px">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#EDE9FE">📋</div>
+          <div><div class="stat-value" id="rTotalVal">0</div><div class="stat-label">Tamamlanan</div><div class="stat-sub">Toplam 17 görev</div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="rTotalBar" style="width:0%;background:var(--primary)"></div></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#FFFBEB">🌅</div>
+          <div><div class="stat-value" id="rMornVal">0/6</div><div class="stat-label">Sabah görevi</div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="rMornBar" style="width:0%;background:#D97706"></div></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#EFF6FF">☀️</div>
+          <div><div class="stat-value" id="rAftVal">0/4</div><div class="stat-label">Öğle görevi</div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="rAftBar" style="width:0%;background:#2563EB"></div></div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#F5F3FF">🌙</div>
+          <div><div class="stat-value" id="rEveVal">0/7</div><div class="stat-label">Akşam görevi</div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="rEveBar" style="width:0%;background:var(--primary)"></div></div></div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="routine-block">
+            <div class="routine-block-header"><span class="routine-block-title">🌅 Sabah Rutini</span><span class="badge badge-orange" id="morningBadge">0/6</span></div>
+            <div id="morningTasks"></div>
+          </div>
+          <div class="routine-block">
+            <div class="routine-block-header"><span class="routine-block-title">☀️ Gün İçi Rutini</span><span class="badge badge-blue" id="afternoonBadge">0/4</span></div>
+            <div id="afternoonTasks"></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="routine-block">
+            <div class="routine-block-header"><span class="routine-block-title">🌙 Akşam Rutini</span><span class="badge badge-purple" id="eveningBadge">0/7</span></div>
+            <div id="eveningTasks"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">💡 Günlük Hatırlatmalar</div>
+            <div id="dailyReminders"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ PRIORITIES ══ -->
+    <div class="content" id="page-priorities">
+      <div class="page-header">
+        <div class="page-title">🏆 En Çok Fark Yaratanlar</div>
+        <div class="page-desc">Lipödemli kişilerde en belirgin iyileşme sağlayan faktörler — önem sırasıyla.</div>
+      </div>
+      <div class="grid-2">
+        <div class="card" id="priorityList"></div>
+        <div>
+          <div class="alert alert-purple" style="margin-bottom:16px"><span class="alert-icon">💜</span><div><div class="alert-title">Kombinasyon Etkisi</div><div class="alert-text">Tek bir şey değil, doğru kombinasyon fark yaratır. Her alanda küçük iyileştirmeler toplamda büyük değişim sağlar.</div></div></div>
+          <div class="card">
+            <div class="card-title">📌 Günlük Rutin Örneği</div>
+            <div style="font-size:13px;color:var(--text2);line-height:2">
+              <strong style="color:var(--orange)">☀️ Sabah:</strong> Protein kahvaltı → Yürüyüş → Su → Takviyeler → Kompresyon<br>
+              <strong style="color:var(--blue)">🌤 Gün içi:</strong> Hareketsiz kalma → Düşük karbonhidrat → Bol su<br>
+              <strong style="color:var(--primary)">🌙 Akşam:</strong> Bisiklet → Presoterapi → Lenf masajı → Magnezyum → 22:30 yat
+            </div>
+          </div>
+          <div class="card" style="margin-top:14px">
+            <div class="card-title">⚠️ Gerçekçi Beklenti</div>
+            <div style="font-size:13px;color:var(--text2);line-height:1.8">
+              Lipödemde <strong>"mucize kür"</strong> yoktur.<br>
+              Sonuçlar <strong>3–6 ay</strong> düzenli uygulamayla görülür.<br>
+              Hedef tedavi değil, <strong>semptom yönetimi</strong>dir.<br>
+              Cerrahi (lipödem liposuction) ileri vakalar için seçenektir.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ INFO ══ -->
+    <div class="content" id="page-info">
+      <div class="page-header">
+        <div class="page-title">ℹ️ Hakkında</div>
+        <div class="page-desc">Lipödem Rehberi uygulaması hakkında bilgi.</div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">💜 Lipödem Nedir?</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.8">
+            Lipödem, ağırlıklı olarak kadınlarda görülen, alt vücutta (bazen kollar) anormal yağ birikimi ile karakterize kronik bir bağ dokusu hastalığıdır.<br><br>
+            <strong>Belirtiler:</strong><br>
+            • Alt vücutta orantısız yağ birikimi<br>
+            • Dokunma ile ağrı ve hassasiyet<br>
+            • Ödem ve ağırlık hissi<br>
+            • Kolay morarma<br>
+            • Selülit benzeri görünüm<br><br>
+            <strong>Hormonal tetikleyiciler:</strong> Ergenlik, hamilelik, menopoz
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">📱 Uygulama Sürümleri</div>
+          <div style="font-size:13px;color:var(--text2);line-height:2">
+            <strong>📱 Mobil (iOS / Android)</strong><br>
+            React Native + Expo<br>
+            Play Store &amp; App Store<br><br>
+            <strong>🌐 Web</strong><br>
+            Tüm tarayıcılarda çalışır<br>
+            Responsive tasarım<br><br>
+            <strong>🖥 Windows / macOS</strong><br>
+            Electron masaüstü uygulaması<br>
+            Çevrimdışı çalışır
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🛠 Teknik Detaylar</div>
+          <div style="font-size:13px;color:var(--text2);line-height:2">
+            <strong>Mobil:</strong> React Native + Expo ~51<br>
+            <strong>Web:</strong> Vanilla HTML/CSS/JS<br>
+            <strong>Windows:</strong> Electron 28<br>
+            <strong>Veri:</strong> AsyncStorage / localStorage<br>
+            <strong>Navigasyon:</strong> React Navigation v6<br>
+            <strong>Grafikler:</strong> Expo Linear Gradient
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">⚠️ Yasal Uyarı</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.8">
+            Bu uygulama yalnızca genel bilgi amaçlıdır ve tıbbi tavsiye niteliği taşımaz.<br><br>
+            Herhangi bir takviye veya tedaviye başlamadan önce doktorunuza, diyetisyeninize veya sertifikalı lenf terapistinize danışınız.<br><br>
+            Lipödem tanısı için mutlaka bir doktora başvurunuz.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ── DATA ──
+const AVOID_FOODS_1=['Şeker ve tatlandırıcılar','Glikoz/fruktoz şurupları','Paketli atıştırmalıklar','Beyaz ekmek & makarna','Kızartma & trans yağ','Ultra işlenmiş gıdalar','Aşırı alkol','İşlenmiş et ürünleri'];
+const AVOID_FOODS_2=['Fazla süt ürünleri','Fazla tuz','Aşırı kahve & enerji içeceği','Gluten (hassasiyete göre)','Yüksek karbonhidrat yükü'];
+const GOOD_FOODS=[
+  {cat:'🥚 Protein Kaynakları',color:'#7C3AED',items:[['Yumurta','Sabah protein başlangıcı için ideal'],['Somon ve yağlı balıklar','Omega-3 deposu'],['Hindi ve tavuk','Düşük yağlı, yüksek protein'],['Kaliteli kırmızı et','Haftada 2–3 kez'],['Kefir','Probiyotik destek (tolere ediliyorsa)']]},
+  {cat:'🐟 Omega-3 Kaynakları',color:'#2563EB',items:[['Somon','Haftada 2–3 kez'],['Sardalya & uskumru','Ucuz ve etkili Omega-3'],['Ceviz','Günlük 5–6 adet'],['Chia & keten tohumu','Salata veya yoğurda ekle']]},
+  {cat:'🥑 Potasyum Kaynakları',color:'#059669',items:[['Avokado','Yarım avokado/gün yeterli'],['Maydanoz','Doğal diüretik etkisi'],['Salatalık, kabak, roka','Su içeriği yüksek'],['Ispanak','Demir ve potasyum zengini']]},
+  {cat:'🌿 Antiinflamatuar Gıdalar',color:'#D97706',items:[['Zerdeçal + biber','Birlikte alındığında etkisi artar'],['Zencefil','Çay veya yemeklere katılabilir'],['Yaban mersini','Güçlü antioksidan'],['Sarımsak','Doğal antibiyotik'],['Zeytinyağı (sızma)','Polifenol zengini']]},
+];
+const DIET_MODELS=[
+  {icon:'🌱',name:'Antiinflamatuar Beslenme',desc:'İnflamasyonu düşürmek için en etkili model',detail:'Zeytinyağı, balık, sebze ve antioksidan zengini besinler. Şeker ve işlenmiş gıdaları dışlar.'},
+  {icon:'🫒',name:'Akdeniz + Düşük Karbonhidrat',desc:'İnsülin dalgalanmasını azaltır',detail:'Lipödem için en çok tercih edilen kombinasyondur. Uzun vadede sürdürülebilir.'},
+  {icon:'📊',name:'Düşük Glisemik Yük',desc:'Kan şekerini sabit tutar',detail:'Glisemik indeksi düşük gıdalar. İnsülin tepkisini minimize eder.'},
+  {icon:'🥩',name:'Ketojenik / Düşük Karbonhidrat',desc:'Bazı kişilerde ciddi fayda',detail:'Karbonhidratı çok kısıtlar. Başlamadan önce doktor görüşü alın.'},
+  {icon:'🌾',name:'Glutensiz Beslenme',desc:'Gluten hassasiyeti olanlarda önerilir',detail:'Bazı lipödem hastalarında glutensiz beslenme ödemi belirgin azaltır.'},
+  {icon:'🥛',name:'Süt Ürünsüz Beslenme',desc:'Ödem tepkisi olanlarda deneyin',detail:'Bazı kişilerde süt ürünleri ödemi artırır. Deneme süresi en az 4 hafta.'},
+];
+const EXERCISES=[
+  {icon:'🚶',name:'Yürüyüş',color:'#7C3AED',rating:5,desc:'Lenf pompası için en temel hareket.',detail:'Günlük 8.000–12.000 adım hedefiniz olsun. Sabah yapılan yürüyüş en etkilidir.',dur:'30–60 dk',freq:'Her gün',int:'Düşük–Orta',tips:['8.000–12.000 adım/gün hedefleyin','Sabah saatlerini tercih edin','Kompresyon çorabıyla yapın','Düzgün yürüyüş ayakkabısı kullanın']},
+  {icon:'🚴',name:'Bisiklet',color:'#2563EB',rating:5,desc:'Lipödem için en iyi egzersizlerden biri.',detail:'Sabit veya outdoor bisiklet. Lenf pompası, düşük darbe, bacak dolaşımı.',dur:'20–45 dk',freq:'4–6×/hafta',int:'Düşük–Orta',tips:['Sabit bisiklet ideal başlangıç','Orta tempo daha etkili','Düz zemin tercih edin']},
+  {icon:'🏊',name:'Yüzme',color:'#0891B2',rating:5,desc:'Su basıncı doğal kompresyon sağlar.',detail:'Suyun basıncı lenf akışını destekler, eklemlere yük bindirmez.',dur:'30–45 dk',freq:'3–4×/hafta',int:'Düşük–Orta',tips:['Ilık havuz tercih edin','Serbest stil veya sırtüstü ideal','Su jimnastiği de etkili']},
+  {icon:'🧘',name:'Reformer Pilates',color:'#7C3AED',rating:4,desc:'Kas aktivasyonu ve dolaşım desteği.',detail:'Derin kas gruplarını aktive eder, postürü düzeltir. Düşük darbeli.',dur:'45–60 dk',freq:'2–3×/hafta',int:'Orta',tips:['Sertifikalı eğitmenle çalışın','Lipödeminizi eğitmene söyleyin','Mat pilates de alternatif']},
+  {icon:'⬆️',name:'Rebounder / Trambolin',color:'#059669',rating:4,desc:'Lenf sistemi için çok özel araç.',detail:'Mini trampolinde hafif zıplamak lenf kapılarını mekanik olarak açar.',dur:'10–20 dk',freq:'Her gün',int:'Düşük',tips:['Nazik küçük zıplamalar yeterli','Sabah rutinine ekleyin','Kaliteli rebounder alın']},
+  {icon:'🧎',name:'Yoga / Esneme',color:'#D97706',rating:4,desc:'Stres azaltma ve dolaşım desteği.',detail:'Yin yoga lenf akışını destekler. Kortizol düşürür.',dur:'20–40 dk',freq:'3–5×/hafta',int:'Düşük',tips:['Yin yoga lenf için ideal','Derin nefes tekniklerini öğrenin','Akşam rutini olarak yapın']},
+];
+const AVOID_EX=[
+  {icon:'⚡',name:'Aşırı Yoğun HIIT',reason:'Kortizol artışı ve inflamasyon riski'},
+  {icon:'🏃',name:'Uzun Süreli Zıplama',reason:'Ödem ve ağrıyı artırabilir'},
+  {icon:'🏋️',name:'Ağır Squat Maratonları',reason:'Alt vücuda aşırı yük bindirir'},
+  {icon:'🦵',name:'Aşırı Yoğun Bacak Günü',reason:'Bacaklarda ödem artışına yol açabilir'},
+];
+const WEEKLY=[
+  {day:'Pazartesi',act:'🚶 Yürüyüş',dur:'30–45 dk',type:'Kardio'},
+  {day:'Salı',act:'🚴 Sabit Bisiklet',dur:'30 dk',type:'Düşük Darbe'},
+  {day:'Çarşamba',act:'🧘 Pilates veya Yoga',dur:'45 dk',type:'Güç + Esneme'},
+  {day:'Perşembe',act:'🚶 Yürüyüş + ⬆️ Rebounder',dur:'30+15 dk',type:'Lenf'},
+  {day:'Cuma',act:'🏊 Yüzme',dur:'30 dk',type:'Kardio'},
+  {day:'Cumartesi',act:'🧘 Yoga + 🚶 Hafif Yürüyüş',dur:'20+20 dk',type:'Aktif Dinlenme'},
+  {day:'Pazar',act:'😴 Tam Dinlenme',dur:'—',type:'Dinlenme'},
+];
+const SUPPLEMENTS=[
+  {icon:'🐟',name:'Omega-3',en:'Omega-3 Fatty Acids',color:'#2563EB',priority:'Birinci Öncelik',pcolor:'#7C3AED',benefits:['İnflamasyon','Ağrı azaltma','Lenf desteği','Kalp sağlığı'],dos:'2–4 gram EPA+DHA/gün',time:'Yemekle birlikte',note:'Triglyceride formlu daha iyi emilir.',caution:'Kan sulandırıcı kullananlar dikkat.'},
+  {icon:'💊',name:'Magnezyum',en:'Magnesium Glycinate',color:'#7C3AED',priority:'Birinci Öncelik',pcolor:'#7C3AED',benefits:['Kas gevşemesi','Stres azaltma','Uyku kalitesi','Ödem'],dos:'200–400 mg/gün',time:'Gece yatmadan önce',note:'Glisinat formu en iyi tolere edilenidir.',caution:'Böbrek hastalığında dikkatli kullanın.'},
+  {icon:'🍊',name:'C Vitamini',en:'Vitamin C',color:'#D97706',priority:'Birinci Öncelik',pcolor:'#7C3AED',benefits:['Kolajen sentezi','Antioksidan','Bağ dokusu'],dos:'500–1000 mg/gün',time:'Sabah kahvaltıyla',note:'Liposomal form daha iyi emilir.',caution:'Yüksek dozda mide rahatsızlığı yapabilir.'},
+  {icon:'🦴',name:'Kolajen Peptid',en:'Collagen Peptides',color:'#D97706',priority:'İkinci Öncelik',pcolor:'#059669',benefits:['Bağ dokusu','Cilt elastikiyeti','Eklem sağlığı'],dos:'10–20 gram/gün',time:'Sabah aç karnına',note:'Tip I ve III kolajen tercih edin. C vitaminiyle alın.',caution:'Hayvansal kaynaklıdır.'},
+  {icon:'🌿',name:'Diosmin + Hesperidin',en:'Diosmin',color:'#059669',priority:'İkinci Öncelik',pcolor:'#059669',benefits:['Venöz dolaşım','Ağırlık hissi','Ödem','Bacak yorgunluğu'],dos:'450+50 mg, günde 1–2×',time:'Yemekle birlikte',note:'Avrupa\'da venöz yetmezlik için yaygın.',caution:'Hamilelikte kullanmayın.'},
+  {icon:'☀️',name:'D Vitamini + K2',en:'Vitamin D3 + K2',color:'#F59E0B',priority:'İkinci Öncelik',pcolor:'#059669',benefits:['Bağışıklık','Hormon dengesi','İnflamasyon'],dos:'1000–5000 IU/gün',time:'Yağlı yemekle',note:'Kan düzeyini kontrol ettirin.',caution:'Aşırı doz toksik olabilir.'},
+  {icon:'🔬',name:'NAC',en:'N-Acetylcysteine',color:'#6B7280',priority:'Üçüncü Öncelik',pcolor:'#6B7280',benefits:['Oksidatif stres','Glutatyon','Karaciğer'],dos:'600–1200 mg/gün',time:'Yemekten önce/sonra',note:'Detoks desteği sağlar.',caution:'İlaç etkileşimleri için danışın.'},
+  {icon:'🍎',name:'Quercetin',en:'Quercetin',color:'#059669',priority:'Üçüncü Öncelik',pcolor:'#6B7280',benefits:['Ödem azaltma','İnflamasyon','Antioksidan'],dos:'500–1000 mg/gün',time:'Yemekle birlikte',note:'Bromelain ile birlikte daha etkili.',caution:'Bazı ilaçlarla etkileşebilir.'},
+];
+const STACK=[
+  {icon:'🐟',name:'Omega-3',note:'Her gün, yemekle'},
+  {icon:'💊',name:'Magnezyum Glisinat',note:'Gece yatmadan'},
+  {icon:'🍊',name:'C Vitamini',note:'Sabah'},
+  {icon:'☀️',name:'D Vitamini + K2',note:'Yağlı yemekle'},
+  {icon:'🌿',name:'Diosmin + Hesperidin',note:'Yemekle birlikte'},
+  {icon:'🦴',name:'Kolajen Peptid',note:'Sabah aç karnına'},
+];
+const DEVICES=[
+  {icon:'🫧',name:'Presoterapi',en:'Pressotherapy',color:'#7C3AED',rating:5,desc:'Lipödemde en faydalı cihazlardan biri.',benefits:['Lenf akışını aktive eder','Ödem azaltır','Dolaşımı hızlandırır','Bacak ağırlığını hafifletir'],usage:'20–45 dk seans, haftada 3–5 kez',tips:['Aşırı basınç ayarından kaçının','Seans öncesi iyi hydrate olun','Sonrasında yürüyüş yapın'],caution:'Aktif infeksiyon, DVT veya kalp yetmezliğinde kullanmayın.'},
+  {icon:'📡',name:'RF (Radyo Frekans)',en:'Radiofrequency',color:'#2563EB',rating:3,desc:'Destekleyici cihaz, tek başına yeterli değil.',benefits:['Cilt sıkılığını artırır','Selülit görünümünü iyileştirir','Kollajen üretimini uyarır'],usage:'Haftada 1–2 kez',tips:['Yeterli su için','Uygulama sonrası masaj faydalı'],caution:'Metal implant olan bölgelere uygulamayın.'},
+  {icon:'🔴',name:'Kırmızı Işık Terapisi',en:'Red Light Therapy',color:'#EF4444',rating:4,desc:'İnflamasyon ve iyileşme desteği.',benefits:['İnflamasyonu azaltır','Hücresel iyileşmeyi hızlandırır','Dolaşımı destekler'],usage:'Günlük 10–20 dk',tips:['Gözleri koruyun','Temiz cilde uygulayın','660+850 nm dalga boyu etkili'],caution:'Fotosensitif ilaç kullananlar dikkatli olsun.'},
+];
+const MASSAGE=[
+  {icon:'🙌',name:'Manuel Lenf Drenajı',en:'MLD',color:'#7C3AED',rec:true,desc:'Lipödemde birinci sıra tedavi.',freq:'Haftada 1–3 kez profesyonel, günlük hafif kendi kendine',benefits:['Lenf akışını artırır','Ödem azaltır','Ağırlık hissini hafifletir','Ağrıyı azaltır'],tips:['Sertifikalı lenf terapisti tercih edin','Çok hafif dokunuşla yapılır','Sonrasında kompresyon giyin']},
+  {icon:'💆',name:'Kendi Kendine Lenf Masajı',en:'Self MLD',color:'#059669',rec:true,desc:'Günlük rutine ekleyebileceğiniz hafif masaj.',freq:'Sabah veya akşam 10–15 dk',benefits:['Uygun maliyetli','Her gün yapılabilir','Lenf akışını destekler'],tips:['Çok hafif dokunuş kullanın','Kasık, koltuk altı, boyuna yönlendirin','Hafif yağ veya losyon kullanın']},
+];
+const COMP=[
+  {icon:'🧦',name:'Kompresyon Çorabı',color:'#7C3AED',desc:'Günlük kullanım için ideal',levels:['15–20 mmHg: Hafif ödem','20–30 mmHg: Orta şiddet','30–40 mmHg: Ağır ödem'],when:['Uzun yürüyüşler','Uçuş & seyahat','Uzun oturma','Sıcak hava']},
+  {icon:'👖',name:'Medikal Lenf Taytı',color:'#EC4899',desc:'Bacak ve kalça bölgesi için',levels:['Sınıf I: Günlük kullanım','Sınıf II: Tedavi amaçlı','Flat knit: Özel lipödem taytı'],when:['Egzersiz sırasında','Ödem yoğun günlerde','Seyahat','Uzun oturma']},
+];
+const CREAMS=[
+  {icon:'☕',name:'Kafein Jel',benefit:'Dolaşımı hızlandırır, selülit görünümünü azaltır'},
+  {icon:'🌰',name:'At Kestanesi Jeli',benefit:'Venöz dolaşım ve şişlik için'},
+  {icon:'🌿',name:'Centella Asiatica',benefit:'Bağ dokusu onarımı'},
+  {icon:'❄️',name:'Mentol İçerikli Kremler',benefit:'Serinletici, ağır his azaltıcı'},
+  {icon:'💧',name:'Escin Bazlı Kremler',benefit:'Damar tonusu ve ödem'},
+  {icon:'✨',name:'Retinol Body Lotion',benefit:'Cilt sıkılığı ve görünümü'},
+];
+const MORNING=[
+  {id:'m1',icon:'🥚',label:'Protein ağırlıklı kahvaltı',cat:'beslenme',cc:'#059669'},
+  {id:'m2',icon:'💧',label:'Sabah 2 bardak su',cat:'hidrasyon',cc:'#2563EB'},
+  {id:'m3',icon:'🚶',label:'Sabah yürüyüşü (15–30 dk)',cat:'egzersiz',cc:'#7C3AED'},
+  {id:'m4',icon:'🧦',label:'Kompresyon giy',cat:'kompresyon',cc:'#0891B2'},
+  {id:'m5',icon:'💊',label:'Sabah takviyeleri al',cat:'takviye',cc:'#D97706'},
+  {id:'m6',icon:'⬆️',label:'Rebounder (10 dk)',cat:'egzersiz',cc:'#7C3AED'},
+];
+const AFTERNOON=[
+  {id:'a1',icon:'🚶',label:'Her saat ayağa kalk & yürü',cat:'egzersiz',cc:'#7C3AED'},
+  {id:'a2',icon:'💧',label:'Öğle su içimi',cat:'hidrasyon',cc:'#2563EB'},
+  {id:'a3',icon:'🥗',label:'Düşük karbonhidrat öğle',cat:'beslenme',cc:'#059669'},
+  {id:'a4',icon:'🧘',label:'Kısa esneme molası',cat:'egzersiz',cc:'#7C3AED'},
+];
+const EVENING=[
+  {id:'e1',icon:'🚴',label:'Bisiklet veya yürüyüş',cat:'egzersiz',cc:'#7C3AED'},
+  {id:'e2',icon:'🫧',label:'Presoterapi (30 dk)',cat:'cihaz',cc:'#EC4899'},
+  {id:'e3',icon:'💆',label:'Hafif lenf masajı',cat:'masaj',cc:'#F472B6'},
+  {id:'e4',icon:'🔴',label:'Kırmızı ışık terapisi',cat:'cihaz',cc:'#EC4899'},
+  {id:'e5',icon:'💊',label:'Magnezyum al',cat:'takviye',cc:'#D97706'},
+  {id:'e6',icon:'📵',label:'Ekran kapatma (21:30)',cat:'uyku',cc:'#6B7280'},
+  {id:'e7',icon:'😴',label:'Erken uyku (22:00–23:00)',cat:'uyku',cc:'#6B7280'},
+];
+const PRIORITIES=[
+  {n:1,icon:'⚖️',name:'Kilo Kontrolü',c:'#7C3AED'},
+  {n:2,icon:'🔥',name:'İnflamasyonu Düşür',c:'#EF4444'},
+  {n:3,icon:'🧦',name:'Kompresyon',c:'#2563EB'},
+  {n:4,icon:'🚴',name:'Düzenli Düşük Darbeli Egzersiz',c:'#059669'},
+  {n:5,icon:'💆',name:'Lenf Drenajı',c:'#EC4899'},
+  {n:6,icon:'😴',name:'Kaliteli Uyku',c:'#6B7280'},
+  {n:7,icon:'🧘',name:'Stres Azaltma',c:'#D97706'},
+  {n:8,icon:'🔄',name:'Sürdürülebilir Rutin',c:'#0891B2'},
+];
+const HOME_CHECKS=[
+  {id:'hc1',icon:'🥚',label:'Protein kahvaltı'},
+  {id:'hc2',icon:'🚶',label:'Yürüyüş'},
+  {id:'hc3',icon:'🧦',label:'Kompresyon giy'},
+  {id:'hc4',icon:'🚴',label:'Egzersiz'},
+  {id:'hc5',icon:'🫧',label:'Presoterapi'},
+  {id:'hc6',icon:'😴',label:'Erken uyku'},
+];
+const TIPS=[
+  'Saatte bir ayağa kalk ve 5 dakika yürü — gün boyu lenf akışını canlı tut.',
+  'Her öğünde protein al; kas pompası olmadan lenf sistemi çalışmaz.',
+  'Sıcak ortamdan kaçın — sıcak ödem ve ağrıyı belirgin artırır.',
+  'Kompresyonunu giy ve unut; vücudun alışınca rahatsızlık hissi azalır.',
+  'Kronik stres kortizolü artırır, kortizol inflamasyonu artırır — nefes egzersizleri dene.',
+  'Kaliteli uyku olmadan beslenme ve egzersiz tam etkisini göstermez.',
+];
+
+// ── STATE ──
+const st={water:0,homeChecks:{},routineDone:{}};
+let tipIdx=Math.floor(Math.random()*TIPS.length);
+
+// ── HELPERS ──
+function h(tag,cls,html,attr=''){return`<${tag} class="${cls}" ${attr}>${html}</${tag}>`}
+function stars(n){return'★'.repeat(n)+'☆'.repeat(5-n)}
+
+// ── RENDER ──
+function renderAll(){
+  renderDate();renderWater();renderHomeChecks();renderTipOfDay();
+  renderAvoidFoods();renderGoodFoods();renderDietModels();
+  renderExercises();renderAvoidEx();renderWeekly();
+  renderSupplements();renderStack();
+  renderDevices();renderMassage();renderComp();renderCreams();
+  renderRoutine();renderPriorities();
+}
+
+function renderDate(){
+  const d=new Date();
+  const days=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+  const months=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+  document.getElementById('topDate').textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()];
+}
+
+function renderWater(){
+  let h='';
+  for(let i=0;i<8;i++){
+    const f=i<st.water;
+    h+=`<div class="wglass${f?' filled':''}" onclick="toggleWater(${i})">${f?'💧':'○'}</div>`;
+  }
+  document.getElementById('waterGlasses').innerHTML=h;
+  document.getElementById('waterBadge').textContent=st.water+' / 8';
+  const pct=Math.round(st.water/8*100);
+  document.getElementById('waterStatVal').textContent=st.water;
+  document.getElementById('waterStatBar').style.width=pct+'%';
+}
+
+function toggleWater(i){st.water=i<st.water?i:i+1;renderWater();}
+
+function renderHomeChecks(){
+  let html='';
+  HOME_CHECKS.forEach(c=>{
+    const done=!!st.homeChecks[c.id];
+    html+=`<div class="check-item" onclick="toggleHomeCheck('${c.id}')">
+      <div class="check-box${done?' done':''}"></div>
+      <span class="check-emoji">${c.icon}</span>
+      <span class="check-label${done?' done':''}">${c.label}</span>
+    </div>`;
+  });
+  document.getElementById('homeChecklist').innerHTML=html;
+  const done=Object.values(st.homeChecks).filter(Boolean).length;
+  document.getElementById('checkStatVal').textContent=done;
+  document.getElementById('checkStatBar').style.width=Math.round(done/6*100)+'%';
+}
+
+function toggleHomeCheck(id){st.homeChecks[id]=!st.homeChecks[id];renderHomeChecks();}
+
+function renderTipOfDay(){
+  document.getElementById('tipOfDay').textContent=TIPS[tipIdx%TIPS.length];
+  tipIdx++;
+}
+
+function renderAvoidFoods(){
+  document.getElementById('avoidList1').innerHTML=AVOID_FOODS_1.map(f=>`<div class="food-item"><div class="food-dot" style="background:#EF4444"></div>${f}</div>`).join('');
+  document.getElementById('avoidList2').innerHTML=AVOID_FOODS_2.map(f=>`<div class="food-item"><div class="food-dot" style="background:#F59E0B"></div>${f}</div>`).join('');
+}
+
+function renderGoodFoods(){
+  document.getElementById('goodFoods').innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">`+
+  GOOD_FOODS.map(g=>`<div class="card">
+    <div class="card-title">${g.cat}</div>
+    ${g.items.map(([n,t])=>`<div class="food-item" style="flex-direction:column;align-items:flex-start">
+      <div style="display:flex;align-items:center;gap:8px"><div class="food-dot" style="background:${g.color}"></div><strong style="font-size:13px;color:var(--text)">${n}</strong></div>
+      <div class="food-tip">${t}</div>
+    </div>`).join('')}
+  </div>`).join('')+'</div>';
+}
+
+function renderDietModels(){
+  document.getElementById('dietModels').innerHTML=DIET_MODELS.map(m=>`<div class="card">
+    <div style="display:flex;align-items:flex-start;gap:12px">
+      <span style="font-size:26px">${m.icon}</span>
+      <div><div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px">${m.name}</div>
+      <div style="font-size:12px;color:var(--text3);margin-bottom:8px">${m.desc}</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.6">${m.detail}</div></div>
+    </div>
+  </div>`).join('');
+}
+
+function renderExercises(){
+  document.getElementById('exerciseCards').innerHTML=EXERCISES.map(e=>`
+  <div class="ex-card" onclick="toggleExCard(this)">
+    <div class="ex-card-header">
+      <div class="ex-icon-wrap" style="background:${e.color}20"><span style="font-size:26px">${e.icon}</span></div>
+      <div class="ex-info">
+        <div class="ex-title">${e.name}</div>
+        <div class="ex-rating">${stars(e.rating)}</div>
+        <div class="ex-desc">${e.desc}</div>
+      </div>
+    </div>
+    <div class="ex-detail">
+      <div style="font-size:13px;color:var(--text2);margin-bottom:10px;line-height:1.6">${e.detail}</div>
+      <div class="ex-meta">
+        <div class="ex-meta-item"><div class="ex-meta-label">⏱ Süre</div><div class="ex-meta-value">${e.dur}</div></div>
+        <div class="ex-meta-item"><div class="ex-meta-label">📅 Sıklık</div><div class="ex-meta-value">${e.freq}</div></div>
+        <div class="ex-meta-item"><div class="ex-meta-label">💪 Yoğunluk</div><div class="ex-meta-value">${e.int}</div></div>
+      </div>
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">💡 İpuçları</div>
+      ${e.tips.map(t=>`<div class="tip-item"><div class="tip-dot" style="background:${e.color}"></div><span class="tip-text">${t}</span></div>`).join('')}
+    </div>
+  </div>`).join('');
+}
+
+function toggleExCard(el){
+  const d=el.querySelector('.ex-detail');
+  d.classList.toggle('open');
+}
+
+function renderAvoidEx(){
+  document.getElementById('avoidExercises').innerHTML=AVOID_EX.map(e=>`
+  <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--red-bg);border-radius:var(--radius-sm)">
+    <span style="font-size:20px">${e.icon}</span>
+    <div><div style="font-size:13px;font-weight:700;color:var(--red)">${e.name}</div>
+    <div style="font-size:11px;color:var(--text3);margin-top:2px">${e.reason}</div></div>
+  </div>`).join('');
+}
+
+function renderWeekly(){
+  document.getElementById('weeklyPlan').innerHTML=WEEKLY.map(r=>`
+  <tr><td>${r.day}</td><td>${r.act}</td><td>${r.dur}</td>
+  <td><span class="badge badge-purple">${r.type}</span></td></tr>`).join('');
+}
+
+function renderSupplements(){
+  document.getElementById('suppCards').innerHTML=SUPPLEMENTS.map((s,i)=>`
+  <div class="supp-card">
+    <div class="supp-header" onclick="toggleSupp(${i})">
+      <div class="supp-icon" style="background:${s.color}18"><span style="font-size:22px">${s.icon}</span></div>
+      <div style="flex:1">
+        <div class="supp-name">${s.name}</div>
+        <div class="supp-en">${s.en}</div>
+        <span class="badge" style="background:${s.pcolor}15;color:${s.pcolor}">${s.priority}</span>
+      </div>
+      <span style="font-size:12px;color:var(--text4)" id="suppch${i}">▼</span>
+    </div>
+    <div class="supp-body" id="supp${i}">
+      <div class="chips">${s.benefits.map(b=>`<div class="chip">${b}</div>`).join('')}</div>
+      <div class="info-grid">
+        <div class="info-box"><div class="info-label">💉 Doz</div><div class="info-value">${s.dos}</div></div>
+        <div class="info-box"><div class="info-label">⏰ Zamanlama</div><div class="info-value">${s.time}</div></div>
+      </div>
+      <div class="note-block"><div class="note-title">📌 Not</div><div class="note-text">${s.note}</div></div>
+      <div class="warn-block"><div class="warn-title">⚠️ Dikkat</div><div class="warn-text">${s.caution}</div></div>
+    </div>
+  </div>`).join('');
+}
+
+function toggleSupp(i){
+  const el=document.getElementById('supp'+i);
+  const ch=document.getElementById('suppch'+i);
+  el.classList.toggle('open');
+  ch.textContent=el.classList.contains('open')?'▲':'▼';
+}
+
+function renderStack(){
+  document.getElementById('stackTable').innerHTML=STACK.map(s=>`
+  <tr><td>${s.icon}</td><td>${s.name}</td><td style="color:var(--text3)">${s.note}</td></tr>`).join('');
+}
+
+function renderDevices(){
+  document.getElementById('deviceCards').innerHTML=DEVICES.map((d,i)=>`
+  <div class="dev-card">
+    <div class="dev-header" onclick="toggleDev(${i})">
+      <div class="ex-icon-wrap" style="background:${d.color}18;width:50px;height:50px;border-radius:13px"><span style="font-size:24px">${d.icon}</span></div>
+      <div style="flex:1">
+        <div style="font-size:15px;font-weight:700;color:var(--text)">${d.name}</div>
+        <div style="font-size:11px;color:var(--text3);font-style:italic">${d.en}</div>
+        <div class="ex-rating">${stars(d.rating)}</div>
+      </div>
+      <span id="devch${i}" style="font-size:12px;color:var(--text4)">▼</span>
+    </div>
+    <div style="padding:0 18px;font-size:12px;color:var(--text3)">${d.desc}</div>
+    <div class="dev-body" id="dev${i}" style="padding:0 20px">
+      <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;margin-top:12px">✅ Faydaları</div>
+      ${d.benefits.map(b=>`<div class="tip-item"><div class="tip-dot" style="background:${d.color}"></div><span class="tip-text">${b}</span></div>`).join('')}
+      <div style="background:var(--bg);border-radius:8px;padding:10px;margin:10px 0;font-size:12px;color:var(--text2)"><strong>⏱ Kullanım:</strong> ${d.usage}</div>
+      <div style="background:var(--orange-bg);border-radius:8px;padding:10px;font-size:12px;color:var(--text2)">⚠️ ${d.caution}</div>
+    </div>
+  </div>`).join('');
+}
+
+function toggleDev(i){
+  const el=document.getElementById('dev'+i);
+  const ch=document.getElementById('devch'+i);
+  el.classList.toggle('open');
+  ch.textContent=el.classList.contains('open')?'▲':'▼';
+}
+
+function renderMassage(){
+  document.getElementById('massageCards').innerHTML=MASSAGE.map(m=>`
+  <div class="card">
+    ${m.rec?'<span class="badge badge-orange" style="margin-bottom:10px">⭐ Önerilen</span>':''}
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <span style="font-size:26px">${m.icon}</span>
+      <div><div style="font-size:15px;font-weight:700;color:var(--text)">${m.name}</div>
+      <div style="font-size:11px;color:var(--text3);font-style:italic">${m.en}</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--text3);margin-bottom:10px">${m.desc}</div>
+    <div class="chips">${m.benefits.map(b=>`<div class="chip">${b}</div>`).join('')}</div>
+    <div style="background:var(--bg);border-radius:8px;padding:10px;margin:10px 0;font-size:12px;color:var(--text2)"><strong>📅 Sıklık:</strong> ${m.freq}</div>
+    ${m.tips.map(t=>`<div class="tip-item"><div class="tip-dot" style="background:${m.color}"></div><span class="tip-text">${t}</span></div>`).join('')}
+  </div>`).join('');
+}
+
+function renderComp(){
+  document.getElementById('compCards').innerHTML=COMP.map(c=>`
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+      <span style="font-size:28px">${c.icon}</span>
+      <div><div style="font-size:15px;font-weight:700;color:var(--text)">${c.name}</div>
+      <div style="font-size:12px;color:var(--text3)">${c.desc}</div></div>
+    </div>
+    <div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px">Basınç Seviyeleri</div>
+    ${c.levels.map(l=>`<div class="comp-level"><div class="comp-dot" style="background:${c.color}"></div><span class="comp-text">${l}</span></div>`).join('')}
+    <div style="font-size:12px;font-weight:700;color:var(--text);margin:10px 0 6px">Ne Zaman Giyilmeli?</div>
+    ${c.when.map(w=>`<div class="tip-item"><div class="tip-dot" style="background:${c.color}"></div><span class="tip-text">${w}</span></div>`).join('')}
+  </div>`).join('');
+}
+
+function renderCreams(){
+  document.getElementById('creamList').innerHTML='<div class="card-title">💄 Etkili İçerikler</div>'+
+  CREAMS.map(c=>`<div class="cream-item"><span class="cream-icon">${c.icon}</span><div><div class="cream-name">${c.name}</div><div class="cream-benefit">${c.benefit}</div></div></div>`).join('');
+  document.getElementById('creamTips').innerHTML=[
+    'Lenf drenajı sonrası uygulayın',
+    'Dairesel hareketlerle, alttan yukarıya doğru uygulayın',
+    'Nemli cilde daha iyi emilir',
+    'Sıcak duş sonrası etkili olabilir',
+    'Sabah ve akşam düzenli kullanın',
+  ].map(t=>`<div class="tip-item"><div class="tip-dot" style="background:var(--pink)"></div><span class="tip-text">${t}</span></div>`).join('');
+}
+
+function renderRoutine(){
+  const cats={beslenme:'#059669',hidrasyon:'#2563EB',egzersiz:'#7C3AED',kompresyon:'#0891B2',takviye:'#D97706',cihaz:'#EC4899',masaj:'#F472B6',uyku:'#6B7280'};
+  function taskHtml(tasks){
+    return tasks.map(t=>{
+      const done=!!st.routineDone[t.id];
+      return`<div class="routine-task" onclick="toggleRoutineTask('${t.id}')">
+        <div class="check-box${done?' done':''}" style="${done?'background:'+t.cc+';border-color:'+t.cc:''}">
+          ${done?'<span style="color:white;font-size:11px;font-weight:800">✓</span>':''}
+        </div>
+        <span style="font-size:17px;width:22px;text-align:center">${t.icon}</span>
+        <span class="routine-task-label${done?' done':''}">${t.label}</span>
+        <span class="cat-pill" style="background:${(cats[t.cat]||'#6B7280')}18;color:${cats[t.cat]||'#6B7280'}">${t.cat}</span>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('morningTasks').innerHTML=taskHtml(MORNING);
+  document.getElementById('afternoonTasks').innerHTML=taskHtml(AFTERNOON);
+  document.getElementById('eveningTasks').innerHTML=taskHtml(EVENING);
+  updateRoutineStats();
+
+  document.getElementById('dailyReminders').innerHTML=[
+    {icon:'🚶',text:'Saatte bir ayağa kalk, 5 dk yürü'},
+    {icon:'💧',text:'Günde en az 2 litre su iç'},
+    {icon:'🌡️',text:'Sıcak ortamdan kaçın'},
+    {icon:'🍽️',text:'Her öğünde protein al'},
+    {icon:'🧘',text:'Strese girme, derin nefes al'},
+  ].map(r=>`<div class="tip-item"><span class="check-emoji">${r.icon}</span><span class="tip-text">${r.text}</span></div>`).join('');
+}
+
+function toggleRoutineTask(id){
+  st.routineDone[id]=!st.routineDone[id];
+  renderRoutine();
+}
+
+function updateRoutineStats(){
+  const mDone=MORNING.filter(t=>st.routineDone[t.id]).length;
+  const aDone=AFTERNOON.filter(t=>st.routineDone[t.id]).length;
+  const eDone=EVENING.filter(t=>st.routineDone[t.id]).length;
+  const total=mDone+aDone+eDone;
+  const pct=Math.round(total/17*100);
+  document.getElementById('rTotalVal').textContent=total;
+  document.getElementById('rTotalBar').style.width=pct+'%';
+  document.getElementById('rMornVal').textContent=mDone+'/6';
+  document.getElementById('rMornBar').style.width=Math.round(mDone/6*100)+'%';
+  document.getElementById('rAftVal').textContent=aDone+'/4';
+  document.getElementById('rAftBar').style.width=Math.round(aDone/4*100)+'%';
+  document.getElementById('rEveVal').textContent=eDone+'/7';
+  document.getElementById('rEveBar').style.width=Math.round(eDone/7*100)+'%';
+  document.getElementById('morningBadge').textContent=mDone+'/6';
+  document.getElementById('afternoonBadge').textContent=aDone+'/4';
+  document.getElementById('eveningBadge').textContent=eDone+'/7';
+  document.getElementById('sideRoutineBadge').textContent=total+'/17';
+}
+
+function renderPriorities(){
+  document.getElementById('priorityList').innerHTML='<div class="card-title">🏆 Öncelik Sıralaması</div>'+
+  PRIORITIES.map(p=>`<div class="priority-item">
+    <div class="rank-circle" style="background:${p.c}">${p.n}</div>
+    <span class="priority-icon">${p.icon}</span>
+    <span class="priority-name">${p.name}</span>
+  </div>`).join('');
+}
+
+// ── NAVIGATION ──
+const titles={
+  home:['Ana Sayfa','— Günlük özet'],
+  nutrition:['Beslenme Rehberi','— Yenilmeli & yenilmemeli'],
+  exercise:['Egzersiz Rehberi','— Düşük darbeli egzersizler'],
+  supplements:['Takviye Rehberi','— Doktor onayı alın'],
+  care:['Bakım & Cihazlar','— Lenf ve kompresyon'],
+  routine:['Günlük Rutin','— Görev takibi'],
+  priorities:['Öncelikler','— En çok fark yaratanlar'],
+  info:['Hakkında','— Uygulama bilgisi'],
+};
+
+function show(page, navEl){
+  document.querySelectorAll('.content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  if(navEl) navEl.classList.add('active');
+  const t=titles[page]||[page,''];
+  document.getElementById('topbarTitle').textContent=t[0];
+  document.getElementById('topbarSub').textContent=t[1];
+}
+
+// ── SUB-TABS ──
+function setTab(group,tab,btn){
+  document.querySelectorAll(`#page-${group==='nut'?'nutrition':'care'} .tab-btn`).forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll(`#page-${group==='nut'?'nutrition':'care'} .tab-content`).forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(group+'-'+tab).classList.add('active');
+}
+
+// ── INIT ──
+renderAll();
+</script>
+</body>
+</html>
