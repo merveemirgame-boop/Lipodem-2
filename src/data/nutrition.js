@@ -1,0 +1,141 @@
+export const AVOID_FOODS = [
+  {
+    category: 'Yüksek İnflamasyon Yapanlar',
+    icon: '🔥',
+    color: '#EF4444',
+    items: [
+      'Şeker ve tatlandırıcılar',
+      'Glikoz/fruktoz şurupları',
+      'Paketli atıştırmalıklar',
+      'Beyaz ekmek',
+      'Beyaz makarna ve pirinç',
+      'Kızartma',
+      'Trans yağ ve margarin',
+      'Ultra işlenmiş gıdalar',
+      'Aşırı alkol',
+      'İşlenmiş et ürünleri',
+    ],
+  },
+  {
+    category: 'Ödem Artırabilenler',
+    icon: '💧',
+    color: '#F59E0B',
+    items: [
+      'Fazla süt ürünleri',
+      'Fazla tuz',
+      'Aşırı kahve',
+      'Enerji içecekleri',
+      'Gluten (hassasiyete göre)',
+      'Yüksek karbonhidrat yükü',
+    ],
+  },
+];
+
+export const GOOD_FOODS = [
+  {
+    category: 'Protein Kaynakları',
+    icon: '🥚',
+    color: '#7C3AED',
+    description: 'Kas pompası lenf sistemi için şarttır.',
+    items: [
+      { name: 'Yumurta', tip: 'Sabah protein başlangıcı için ideal' },
+      { name: 'Somon ve yağlı balıklar', tip: 'Omega-3 deposu' },
+      { name: 'Hindi eti', tip: 'Düşük yağlı, yüksek protein' },
+      { name: 'Tavuk göğsü', tip: 'Günlük temel protein' },
+      { name: 'Kaliteli kırmızı et', tip: 'Haftada 2-3 kez' },
+      { name: 'Kefir', tip: 'Tolere ediliyorsa probiyotik destek' },
+    ],
+  },
+  {
+    category: 'Omega-3 Kaynakları',
+    icon: '🐟',
+    color: '#2563EB',
+    description: 'En güçlü inflamasyon düşürücülerden.',
+    items: [
+      { name: 'Somon', tip: 'Haftada 2-3 kez tüketeliyor' },
+      { name: 'Sardalya', tip: 'Ucuz ve etkili Omega-3 kaynağı' },
+      { name: 'Uskumru', tip: 'Yüksek yağlı asit içeriği' },
+      { name: 'Ceviz', tip: 'Günlük 5-6 adet yeterli' },
+      { name: 'Chia tohumu', tip: 'Salata veya yoğurda ekle' },
+      { name: 'Keten tohumu', tip: 'Öğütülmüş kullan' },
+    ],
+  },
+  {
+    category: 'Potasyum Kaynakları',
+    icon: '🥑',
+    color: '#059669',
+    description: 'Ödem kontrolü için kritik.',
+    items: [
+      { name: 'Avokado', tip: 'Günlük yarım avokado yeterli' },
+      { name: 'Maydanoz', tip: 'Doğal diüretik etkisi var' },
+      { name: 'Salatalık', tip: 'Su içeriği yüksek, serinletici' },
+      { name: 'Kabak', tip: 'Düşük karbonhidrat, yüksek potasyum' },
+      { name: 'Roka ve yeşillikler', tip: 'Antioksidan deposu' },
+      { name: 'Ispanak', tip: 'Demir ve potasyum zengini' },
+    ],
+  },
+  {
+    category: 'Kolajen Destekleyiciler',
+    icon: '🦴',
+    color: '#D97706',
+    description: 'Bağ dokusu lipödemde çok önemli.',
+    items: [
+      { name: 'Kemik suyu', tip: 'Evde yapımı en etkili' },
+      { name: 'C vitamini kaynakları', tip: 'Kolajen sentezi için şart' },
+      { name: 'Kolajen peptid takviyesi', tip: 'Sabah aç karnına alınabilir' },
+      { name: 'Portakal, limon, kivi', tip: 'C vitamini deposu' },
+    ],
+  },
+  {
+    category: 'Antiinflamatuar Yiyecekler',
+    icon: '🌿',
+    color: '#7C3AED',
+    description: 'İnflamasyonu düşüren güçlü besinler.',
+    items: [
+      { name: 'Zerdeçal + biber', tip: 'Birlikte alındığında etkisi artar' },
+      { name: 'Zencefil', tip: 'Çay olarak veya yemeklere katılabilir' },
+      { name: 'Yaban mersini', tip: 'Güçlü antioksidan' },
+      { name: 'Brokoli', tip: 'Sulforafan içerir, güçlü koruyucu' },
+      { name: 'Sarımsak', tip: 'Doğal antibiyotik ve antiinflamatuar' },
+      { name: 'Zeytinyağı (sızma)', tip: 'Polifenol zengini' },
+    ],
+  },
+];
+
+export const DIET_MODELS = [
+  {
+    name: 'Antiinflamatuar Beslenme',
+    icon: '🌱',
+    description: 'İnflamasyonu düşürmek için en etkili model',
+    suitable: true,
+    details: 'Zeytinyağı, balık, sebze ve antioksidan zengini besinlere odaklanır. Şeker ve işlenmiş gıdaları dışlar.',
+  },
+  {
+    name: 'Akdeniz + Düşük Karbonhidrat',
+    icon: '🫒',
+    description: 'İnsülin dalgalanmasını azaltır',
+    suitable: true,
+    details: 'Akdeniz diyetini düşük karbonhidrat prensibiyle birleştirir. Lipödem için sık tercih edilir.',
+  },
+  {
+    name: 'Düşük Glisemik Yük',
+    icon: '📊',
+    description: 'Kan şekerini sabit tutar',
+    suitable: true,
+    details: 'Glisemik indeksi düşük gıdaları tercih ederek insülin tepkisini minimize eder.',
+  },
+  {
+    name: 'Ketojenik / Düşük Karbonhidrat',
+    icon: '🥩',
+    description: 'Bazı kişilerde ciddi fayda görülür',
+    suitable: true,
+    details: 'Karbonhidratı çok kısıtlar, yağ ve proteine odaklanır. Başlamadan önce doktor görüşü alın.',
+  },
+  {
+    name: 'Glutensiz Beslenme',
+    icon: '🌾',
+    description: 'Gluten hassasiyeti olanlarda önerilir',
+    suitable: true,
+    details: 'Bazı lipödem hastalarında glutensiz beslenme ödemi belirgin azaltır.',
+  },
+];
